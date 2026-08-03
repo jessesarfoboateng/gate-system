@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import { LayoutDashboard, Settings2, History, Shield, Menu, X, ChevronLeft, Sun, Moon } from 'lucide-react';
 import Dashboard from './pages/Dashboard';
 import Controls from './pages/Controls';
