@@ -1,20 +1,58 @@
 @import "tailwindcss";
 
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   
+  --color-brand-blue: #2563eb;
+  --color-brand-blue-light: rgba(37, 99, 235, 0.1);
+  
+  /* Light Mode (default) */
+  --color-brand-bg: #f0f2f6;
+  --color-card-bg: #ffffff;
+  --color-sidebar-bg: #ffffff;
+  --color-border-color: #e2e8f0;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-tertiary: #94a3b8;
+  --shadow-premium: 0 4px 20px -2px rgba(148, 163, 184, 0.12), 0 2px 8px -1px rgba(148, 163, 184, 0.08);
+}
+
+.dark {
+  /* Dark Mode */
   --color-brand-blue: #3b82f6;
   --color-brand-blue-light: rgba(59, 130, 246, 0.1);
   --color-brand-bg: #000000;
   --color-card-bg: #111827;
+  --color-sidebar-bg: #111827;
   --color-border-color: #1f2937;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #4b5563;
+  --shadow-premium: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+}
+
+@theme {
+  --font-sans: var(--font-sans);
   
-  --shadow-premium: 0 4px 20px -2px rgba(0, 0, 0, 0.3), 0 2px 8px -1px rgba(0, 0, 0, 0.2);
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-blue-light: var(--color-brand-blue-light);
+  --color-brand-bg: var(--color-brand-bg);
+  --color-card-bg: var(--color-card-bg);
+  --color-sidebar-bg: var(--color-sidebar-bg);
+  --color-border-color: var(--color-border-color);
+  
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  
+  --shadow-premium: var(--shadow-premium);
 }
 
 @layer base {
   body {
-    @apply bg-brand-bg text-slate-100 font-sans antialiased m-0 min-h-screen;
+    @apply bg-brand-bg text-text-primary font-sans antialiased m-0 min-h-screen transition-colors duration-300;
   }
 }
 
@@ -22,7 +60,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Custom scrollbar to look sleek in dark mode */
+/* Custom scrollbar to look sleek */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -31,9 +69,9 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: var(--color-border-color);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: var(--color-text-secondary);
 }

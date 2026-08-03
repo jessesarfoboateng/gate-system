@@ -62,36 +62,36 @@ export default function EventLog() {
   };
 
   const getTypeBadgeColor = (type) => {
-    if (type.includes('entry')) return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-    if (type.includes('misting')) return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-    if (type.includes('emergency')) return 'bg-rose-500/10 text-rose-400 border-rose-500/20';
-    if (type.includes('mode')) return 'bg-slate-800 text-slate-300 border-slate-700';
-    return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+    if (type.includes('entry')) return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
+    if (type.includes('misting')) return 'bg-blue-500/10 text-blue-600 dark:text-blue-405 dark:text-blue-400 border-blue-500/20';
+    if (type.includes('emergency')) return 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20';
+    if (type.includes('mode')) return 'bg-slate-100 dark:bg-slate-800 text-text-secondary border-border-color';
+    return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
   };
 
   return (
-    <div className="flex-1 bg-[#000000] min-h-screen flex flex-col text-slate-100">
+    <div className="flex-1 bg-brand-bg min-h-screen flex flex-col text-text-primary">
       <div className="flex-1 max-w-5xl mx-auto w-full p-6 lg:p-8 flex flex-col h-full overflow-hidden">
         
         {/* Header and Filter Toolbar */}
         <header className="flex flex-col gap-6 mb-8 shrink-0">
           <div>
-            <h1 className="text-xl font-bold text-slate-100 tracking-tight">Event Log / History</h1>
-            <p className="text-xs text-slate-400 mt-0.5">Audit logs of security and sanitation gate transits</p>
+            <h1 className="text-xl font-bold text-text-primary tracking-tight">Event Log / History</h1>
+            <p className="text-xs text-text-secondary mt-0.5">Audit logs of security and sanitation gate transits</p>
           </div>
           
-          <div className="bg-[#111827] border border-slate-800 rounded-3xl p-5 shadow-premium flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="bg-card-bg border border-border-color rounded-3xl p-5 shadow-premium flex flex-col md:flex-row items-center justify-between gap-4">
             
             {/* Filters */}
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
               
               {/* Type Select */}
               <div className="relative w-full sm:w-44">
-                <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Event Type</label>
+                <label className="block text-[10px] uppercase font-bold text-text-secondary mb-1">Event Type</label>
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full appearance-none bg-slate-900 border border-slate-800 text-slate-200 py-2 px-3 pr-8 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 transition-smooth"
+                  className="w-full appearance-none bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-2 px-3 pr-8 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth cursor-pointer"
                 >
                   <option value="all">All Events</option>
                   <option value="entry">Detections</option>
@@ -99,28 +99,28 @@ export default function EventLog() {
                   <option value="misting">Misting Run</option>
                   <option value="mode">System Mode</option>
                 </select>
-                <Filter size={12} className="absolute right-3 bottom-2.5 text-slate-500 pointer-events-none" />
+                <Filter size={12} className="absolute right-3 bottom-2.5 text-text-secondary pointer-events-none" />
               </div>
 
               {/* Date Start */}
               <div className="w-full sm:w-auto">
-                <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Start Date</label>
+                <label className="block text-[10px] uppercase font-bold text-text-secondary mb-1">Start Date</label>
                 <input
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 text-slate-200 py-1.5 px-3 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 transition-smooth [color-scheme:dark]"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-1.5 px-3 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
 
               {/* Date End */}
               <div className="w-full sm:w-auto">
-                <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">End Date</label>
+                <label className="block text-[10px] uppercase font-bold text-text-secondary mb-1">End Date</label>
                 <input
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 text-slate-200 py-1.5 px-3 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 transition-smooth [color-scheme:dark]"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-1.5 px-3 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export default function EventLog() {
             {/* Export Action */}
             <button 
               onClick={handleExport}
-              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 py-2.5 px-4 rounded-2xl text-xs font-bold flex items-center gap-2 transition-smooth w-full md:w-auto justify-center cursor-pointer shadow-sm"
+              className="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-border-color text-text-primary py-2.5 px-4 rounded-2xl text-xs font-bold flex items-center gap-2 transition-smooth w-full md:w-auto justify-center cursor-pointer shadow-sm"
             >
               <Download size={14} />
               Export CSV
@@ -139,35 +139,35 @@ export default function EventLog() {
         </header>
 
         {/* Table representation */}
-        <div className="bg-[#111827] border border-slate-800 rounded-3xl shadow-premium flex-1 overflow-hidden flex flex-col">
+        <div className="bg-card-bg border border-border-color rounded-3xl shadow-premium flex-1 overflow-hidden flex flex-col">
           <div className="flex-1 overflow-y-auto">
             <table className="w-full text-left border-collapse table-fixed min-w-[600px]">
               <thead>
-                <tr className="bg-slate-900/60 border-b border-slate-800 sticky top-0 backdrop-blur-md z-10">
-                  <th className="py-4 px-6 text-[10px] uppercase font-bold tracking-wider text-slate-400 w-1/4">Date & Time</th>
-                  <th className="py-4 px-6 text-[10px] uppercase font-bold tracking-wider text-slate-400 w-1/4">Event Category</th>
-                  <th className="py-4 px-6 text-[10px] uppercase font-bold tracking-wider text-slate-400 w-1/2">Details / Telemetry</th>
+                <tr className="bg-slate-100/50 dark:bg-slate-900/60 border-b border-border-color sticky top-0 backdrop-blur-md z-10">
+                  <th className="py-4 px-6 text-[10px] uppercase font-bold tracking-wider text-text-secondary w-1/4">Date & Time</th>
+                  <th className="py-4 px-6 text-[10px] uppercase font-bold tracking-wider text-text-secondary w-1/4">Event Category</th>
+                  <th className="py-4 px-6 text-[10px] uppercase font-bold tracking-wider text-text-secondary w-1/2">Details / Telemetry</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-border-color/60 text-text-primary">
                 {loading ? (
                   <tr>
-                    <td colSpan="3" className="py-12 text-center text-xs font-semibold text-slate-500">Loading audit history...</td>
+                    <td colSpan="3" className="py-12 text-center text-xs font-semibold text-text-secondary">Loading audit history...</td>
                   </tr>
                 ) : filteredLogs.length === 0 ? (
                   <tr>
-                    <td colSpan="3" className="py-12 text-center text-xs font-semibold text-slate-500">No events matched filters.</td>
+                    <td colSpan="3" className="py-12 text-center text-xs font-semibold text-text-secondary">No events matched filters.</td>
                   </tr>
                 ) : (
                   filteredLogs.map((log) => (
-                    <tr key={log.id} className="hover:bg-slate-800/20 transition-colors">
-                      <td className="py-4.5 px-6 whitespace-nowrap text-xs font-medium text-slate-400">
+                    <tr key={log.id} className="hover:bg-slate-100/30 dark:hover:bg-slate-800/20 transition-colors">
+                      <td className="py-4.5 px-6 whitespace-nowrap text-xs font-medium text-text-secondary">
                         <span className="flex items-center gap-2">
-                          <Calendar size={13} className="text-slate-600" />
+                          <Calendar size={13} className="text-text-tertiary" />
                           {new Date(log.timestamp).toLocaleString(undefined, {
                             month: 'short', day: 'numeric',
                             hour: '2-digit', minute:'2-digit', second:'2-digit'
-                          })}
+                        })}
                         </span>
                       </td>
                       <td className="py-4.5 px-6 whitespace-nowrap">
@@ -175,7 +175,7 @@ export default function EventLog() {
                           {formatEventType(log.type)}
                         </span>
                       </td>
-                      <td className="py-4.5 px-6 text-xs font-semibold text-slate-400">
+                      <td className="py-4.5 px-6 text-xs font-semibold text-text-secondary">
                         {log.detail}
                       </td>
                     </tr>

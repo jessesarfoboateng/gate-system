@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import { LayoutDashboard, Settings2, History, Shield, Menu, X, ChevronLeft } from 'lucide-react';
+import { LayoutDashboard, Settings2, History, Shield, Menu, X, ChevronLeft, Sun, Moon } from 'lucide-react';
 import Dashboard from './pages/Dashboard';
 import Controls from './pages/Controls';
 import EventLog from './pages/EventLog';
@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
       {/* Sidebar Container */}
       <div 
-        className={`fixed lg:relative top-0 bottom-0 left-0 bg-[#111827] border-r border-slate-800 flex flex-col justify-between py-8 px-5 shrink-0 z-50 transition-all duration-300 ease-in-out ${
+        className={`fixed lg:relative top-0 bottom-0 left-0 bg-sidebar-bg border-r border-border-color flex flex-col justify-between py-8 px-5 shrink-0 z-50 transition-all duration-300 ease-in-out ${
           isOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full lg:w-0 lg:translate-x-0 overflow-hidden opacity-0 border-r-0 px-0'
         }`}
       >
@@ -26,19 +26,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {/* Logo and Name with close toggle */}
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20 shrink-0">
+              <div className="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-blue/20 shrink-0">
                 <Shield size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <h2 className="text-sm font-bold text-slate-100 tracking-tight">GateControl</h2>
-                <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Biosecurity</p>
+                <h2 className="text-sm font-bold text-text-primary tracking-tight">GateControl</h2>
+                <p className="text-[10px] text-text-secondary font-semibold uppercase tracking-wider">Biosecurity</p>
               </div>
             </div>
             
             {/* Collapse button for both mobile (Close) and desktop (Collapse) */}
             <button 
               onClick={toggleSidebar} 
-              className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-smooth cursor-pointer"
+              className="p-1.5 rounded-lg text-text-secondary hover:bg-slate-100 hover:text-text-primary dark:hover:bg-slate-800 transition-smooth cursor-pointer"
               title={window.innerWidth < 1024 ? "Close menu" : "Collapse menu"}
             >
               {window.innerWidth < 1024 ? <X size={18} /> : <ChevronLeft size={18} />}
@@ -50,11 +50,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <NavLink 
               to="/" 
               onClick={() => window.innerWidth < 1024 && toggleSidebar()}
-              className={({isActive}) => `relative flex items-center gap-3.5 px-4 py-3 rounded-xl transition-smooth ${isActive ? 'bg-blue-600/10 text-blue-400 font-bold' : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'}`}
+              className={({isActive}) => `relative flex items-center gap-3.5 px-4 py-3 rounded-xl transition-smooth ${isActive ? 'bg-brand-blue-light text-brand-blue font-bold' : 'text-text-secondary hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-text-primary'}`}
             >
               {({ isActive }) => (
                 <>
-                  {isActive && <div className="absolute left-0 w-1 h-6 bg-blue-500 rounded-r-full" />}
+                  {isActive && <div className="absolute left-0 w-1 h-6 bg-brand-blue rounded-r-full" />}
                   <LayoutDashboard size={20} />
                   <span className="text-xs tracking-wide">Live Dashboard</span>
                 </>
@@ -64,11 +64,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <NavLink 
               to="/controls" 
               onClick={() => window.innerWidth < 1024 && toggleSidebar()}
-              className={({isActive}) => `relative flex items-center gap-3.5 px-4 py-3 rounded-xl transition-smooth ${isActive ? 'bg-blue-600/10 text-blue-400 font-bold' : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'}`}
+              className={({isActive}) => `relative flex items-center gap-3.5 px-4 py-3 rounded-xl transition-smooth ${isActive ? 'bg-brand-blue-light text-brand-blue font-bold' : 'text-text-secondary hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-text-primary'}`}
             >
               {({ isActive }) => (
                 <>
-                  {isActive && <div className="absolute left-0 w-1 h-6 bg-blue-500 rounded-r-full" />}
+                  {isActive && <div className="absolute left-0 w-1 h-6 bg-brand-blue rounded-r-full" />}
                   <Settings2 size={20} />
                   <span className="text-xs tracking-wide">Manual Controls</span>
                 </>
@@ -78,11 +78,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <NavLink 
               to="/logs" 
               onClick={() => window.innerWidth < 1024 && toggleSidebar()}
-              className={({isActive}) => `relative flex items-center gap-3.5 px-4 py-3 rounded-xl transition-smooth ${isActive ? 'bg-blue-600/10 text-blue-400 font-bold' : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'}`}
+              className={({isActive}) => `relative flex items-center gap-3.5 px-4 py-3 rounded-xl transition-smooth ${isActive ? 'bg-brand-blue-light text-brand-blue font-bold' : 'text-text-secondary hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-text-primary'}`}
             >
               {({ isActive }) => (
                 <>
-                  {isActive && <div className="absolute left-0 w-1 h-6 bg-blue-500 rounded-r-full" />}
+                  {isActive && <div className="absolute left-0 w-1 h-6 bg-brand-blue rounded-r-full" />}
                   <History size={20} />
                   <span className="text-xs tracking-wide">Event Log</span>
                 </>
@@ -92,12 +92,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
         
         {/* Bottom System Status */}
-        <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900/50 border border-slate-800/50 min-w-[218px]">
+        <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-border-color min-w-[218px]">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">System Online</span>
+          <span className="text-[10px] font-bold text-emerald-500 dark:text-emerald-400 uppercase tracking-wider">System Online</span>
         </div>
       </div>
     </>
@@ -106,14 +106,29 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [theme, setTheme] = useState('light');
+
+  // Sync theme class to document root
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [theme]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
+
   return (
     <Router>
-      <div className="flex h-screen bg-[#000000] text-slate-100 font-sans overflow-hidden">
+      <div className="flex h-screen bg-brand-bg text-text-primary font-sans overflow-hidden">
         {/* Navigation Sidebar */}
         <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
         
@@ -121,34 +136,45 @@ function App() {
         <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
           
           {/* Global Sticky Top Header */}
-          <header className="h-16 border-b border-slate-800 bg-[#111827]/40 backdrop-blur-md flex items-center justify-between px-6 shrink-0 z-30">
+          <header className="h-16 border-b border-border-color bg-card-bg/40 backdrop-blur-md flex items-center justify-between px-6 shrink-0 z-30">
             <div className="flex items-center gap-4">
               {/* Show hamburger Menu toggle only when sidebar is closed OR on mobile devices */}
               {(!sidebarOpen || window.innerWidth < 1024) && (
                 <button 
                   onClick={toggleSidebar}
-                  className="p-2 rounded-xl bg-[#111827] border border-slate-800 text-slate-300 hover:text-white transition-smooth hover:bg-slate-800/50 cursor-pointer"
+                  className="p-2 rounded-xl bg-card-bg border border-border-color text-text-secondary hover:text-text-primary transition-smooth hover:bg-slate-100 dark:hover:bg-slate-800/50 cursor-pointer"
                   title="Open Navigation Menu"
                 >
                   <Menu size={18} />
                 </button>
               )}
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">System Monitoring</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary">System Monitoring</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Active Protection</span>
+            <div className="flex items-center gap-4">
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-xl bg-card-bg border border-border-color text-text-secondary hover:text-text-primary transition-smooth hover:bg-slate-100 dark:hover:bg-slate-800/50 cursor-pointer"
+                title={theme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode"}
+              >
+                {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              </button>
+
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Active Protection</span>
+              </div>
             </div>
           </header>
 
-          {/* Route Content Area */}
-          <div className="flex-1 overflow-y-auto">
+          {/* Route Content Area - pb-20 added on mobile to prevent cut-off scrolling */}
+          <div className="flex-1 overflow-y-auto pb-20 lg:pb-0">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/controls" element={<Controls />} />
