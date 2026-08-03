@@ -91,7 +91,7 @@ export default function EventLog() {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full appearance-none bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-2 px-3 pr-8 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth cursor-pointer"
+                  className="w-full appearance-none bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-2 px-3 pr-8 rounded-xl text-base lg:text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth cursor-pointer"
                 >
                   <option value="all">All Events</option>
                   <option value="entry">Detections</option>
@@ -109,7 +109,7 @@ export default function EventLog() {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-1.5 px-3 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth [color-scheme:light] dark:[color-scheme:dark]"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-1.5 px-3 rounded-xl text-base lg:text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
 
@@ -120,7 +120,7 @@ export default function EventLog() {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-1.5 px-3 rounded-xl text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth [color-scheme:light] dark:[color-scheme:dark]"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-border-color text-text-primary py-1.5 px-3 rounded-xl text-base lg:text-xs font-semibold focus:outline-none focus:border-brand-blue transition-smooth [color-scheme:light] dark:[color-scheme:dark]"
                 />
               </div>
 

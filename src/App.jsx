@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
       {/* Sidebar Container */}
       <div 
-        className={`fixed lg:relative top-0 bottom-0 left-0 bg-sidebar-bg border-r border-border-color flex flex-col justify-between py-8 px-5 shrink-0 z-50 transition-all duration-300 ease-in-out ${
+        className={`fixed lg:relative top-0 bottom-0 left-0 bg-sidebar-bg border-r border-border-color flex flex-col justify-between py-8 px-5 shrink-0 z-50 overscroll-contain transition-all duration-300 ease-in-out ${
           isOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full lg:w-0 lg:translate-x-0 overflow-hidden opacity-0 border-r-0 px-0'
         }`}
       >
@@ -136,7 +136,7 @@ function App() {
         <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
           
           {/* Global Sticky Top Header */}
-          <header className="h-16 border-b border-border-color bg-card-bg/40 backdrop-blur-md flex items-center justify-between px-6 shrink-0 z-30">
+          <header className="sticky top-0 h-16 border-b border-border-color bg-card-bg/75 backdrop-blur-md flex items-center justify-between px-6 shrink-0 z-30">
             <div className="flex items-center gap-4">
               {/* Show hamburger Menu toggle only when sidebar is closed OR on mobile devices */}
               {(!sidebarOpen || window.innerWidth < 1024) && (
